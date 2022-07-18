@@ -8,83 +8,91 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="iq-card-body">
-                    <ul class="iq-timeline">
-                        <?php
-                        $indexwarna = 0;
-                        $ada = 0;
-                        if (!empty($trx_status_tor)) {
-                            for ($q3 = 0; $q3 < count($trx_status_tor); $q3++) {
-                                if ($trx_status_tor[$q3]->id_tor == $join[$a]->tor_id) {
-                        ?>
-                                    <li>
-                                        <?php for ($st = 0; $st < count($status); $st++) {
-                                            if ($status[$st]->id == $trx_status_tor[$q3]->id_status) {
-                                                $wstatus = $status[$st]->nama_status;
-                                                if ($wstatus == 'Proses Pengajuan') {
-                                                    $warnaLingkar = 'timeline-dots';
-                                                } elseif ($wstatus == 'Verifikasi') {
-                                                    $warnaLingkar = 'timeline-dots border-warning';
-                                                } elseif ($wstatus == 'Review') {
-                                                    $warnaLingkar = 'timeline-dots  border-info';
-                                                } elseif ($wstatus == 'Revisi') {
-                                                    $warnaLingkar = 'timeline-dots  border-danger';
-                                                } elseif ($wstatus == 'Validasi') {
-                                                    $warnaLingkar = 'timeline-dots  border-success';
-                                                } elseif ($wstatus == 'Pengajuan Perbaikan') {
-                                                    $warnaLingkar = 'timeline-dots';
+                <div class="card">
+                    <div class="card-header bg-transparent pb-0">
+                        <div>
+                            <!-- <h3 class="card-title mb-2">Status Pengajuan TOR</h3> -->
+                        </div>
+                    </div>
+
+                    <div class="card-body mt-0">
+                        <div class="latest-timeline mt-4">
+                            <ul class="timeline mb-0">
+                                <?php
+                                $indexwarna = 0;
+                                $ada = 0;
+                                if (!empty($trx_status_tor)) {
+                                    for ($q3 = 0; $q3 < count($trx_status_tor); $q3++) {
+                                        if ($trx_status_tor[$q3]->id_tor == $join[$a]->tor_id) {
+                                ?>
+                                            <li>
+                                                <?php for ($st = 0; $st < count($status); $st++) {
+                                                    if ($status[$st]->id == $trx_status_tor[$q3]->id_status) {
+                                                        $wstatus = $status[$st]->nama_status;
+                                                        if ($wstatus == 'Proses Pengajuan') {
+                                                            $warnaLingkar = 'featured_icon';
+                                                        } elseif ($wstatus == 'Verifikasi') {
+                                                            $warnaLingkar = 'featured_icon border-warning';
+                                                        } elseif ($wstatus == 'Review') {
+                                                            $warnaLingkar = 'featured_icon  border-info';
+                                                        } elseif ($wstatus == 'Revisi') {
+                                                            $warnaLingkar = 'featured_icon  border-danger';
+                                                        } elseif ($wstatus == 'Validasi') {
+                                                            $warnaLingkar = 'featured_icon  border-success';
+                                                        } elseif ($wstatus == 'Pengajuan Perbaikan') {
+                                                            $warnaLingkar = 'featured_icon';
+                                                        }
+                                                    }
                                                 }
+                                                ?>
+                                            <li>
+                                                <div class="{{$warnaLingkar}}"></div>
+                                            </li>
+                                            <div><span class="tx-11 text-muted float-end">{{$trx_status_tor[$q3]->created_at}}</span></div>
+
+                                            <?php
+                                            $indexwarna += 1;
+                                            if ($indexwarna > 3) {
+                                                $indexwarna = 0;
                                             }
-                                        }
-                                        ?>
-                                        <div class="{{$warnaLingkar}}"><i class="ri-check-fill" style="color:black"></i></div>
-                                        <?php
-                                        $indexwarna += 1;
-                                        if ($indexwarna > 3) {
-                                            $indexwarna = 0;
-                                        }
-                                        ?>
-                                        <div class="{{$warnaLingkar}}"><i class="ri-check-fill" style="color:black"></i></div>
-                                        <?php
-                                        $indexwarna += 1;
-                                        if ($indexwarna > 3) {
-                                            $indexwarna = 0;
-                                        }
-                                        ?>
-                                        <div class="row">
-                                            <div class="col">
-                                                <h6 style="text-align:left;">
-                                                    <?php
-                                                    for ($st3 = 0; $st3 < count($status); $st3++) {
-                                                        if ($status[$st3]->id == $trx_status_tor[$q3]->id_status) {
-                                                            echo  $status[$st3]->nama_status;
-                                                            for ($u = 0; $u < count($user); $u++) {
-                                                                if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
-                                                                    for ($rl = 0; $rl < count($role); $rl++) {
-                                                                        if ($role[$rl]->id == $user[$u]->role) {
-                                                                            echo "<br/>" . " - create by : " . $user[$u]->name . " - " . $trx_status_tor[$q3]->role_by;
-                                                                            // $pengvalidasi = $role[$rl]->id;
-                                                                        }
-                                                                    }
+                                            ?>
+
+                                            <li class="mt-0 activity">
+                                                <?php
+                                                for ($st3 = 0; $st3 < count($status); $st3++) {
+                                                    if ($status[$st3]->id == $trx_status_tor[$q3]->id_status) { ?>
+                                                        <a href="javascript:void(0);" class="tx-12 text-dark">
+                                                            <p class="mb-1 font-weight-semibold text-dark tx-13">
+                                                                <?php echo "<b>" . "" . "</b>" . $status[$st3]->nama_status; ?>
+                                                            </p>
+                                                        </a>
+                                                        <?php for ($u = 0; $u < count($user); $u++) {
+                                                            if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
+                                                                for ($rl = 0; $rl < count($role); $rl++) {
+                                                                    if ($role[$rl]->id == $user[$u]->role) {
+                                                                        // $pengvalidasi = $role[$rl]->id;
+                                                        ?>
+                                                                        <p class="text-muted mt-0 mb-0 tx-12">
+                                                                            <?php echo "Create by : " .  $user[$u]->name . " - " . $trx_status_tor[$q3]->role_by; ?>
+                                                                        </p>
+                                                <?php }
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                    ?>
-                                                </h6>
-                                            </div>
-                                            <div class="col">
-                                                <small style="font-size: smaller;color:grey" class="float-right mt-1">{{$trx_status_tor[$q3]->created_at}}</small>
-                                            </div>
-                                        </div>
-                                    </li>
+                                                }
+                                                ?>
+                                                <div class="col">
+                                                    <!-- <small style="font-size: smaller;color:grey" class="float-right mt-1">{{$trx_status_tor[$q3]->created_at}}</small> -->
+                                                </div>
+                                            </li>
 
-
-                                    <br />
-                        <?php }
-                            }
-                        } ?>
-                    </ul>
+                                <?php }
+                                    }
+                                } ?>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

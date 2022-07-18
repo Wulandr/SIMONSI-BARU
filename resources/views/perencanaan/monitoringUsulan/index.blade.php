@@ -413,7 +413,6 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-                                                                                                                    <br />
                                                                                                         <?php }
                                                                                                             }
                                                                                                         } ?>
