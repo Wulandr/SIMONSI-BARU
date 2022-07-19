@@ -400,8 +400,9 @@ use Illuminate\Support\Facades\Auth;
                                   }
                                   ?>
                                   <!-- TAMBAH ANGGARAN DI RAB  {{" [".$tw."] "}}-->
-                                  <a href="#" class="badge iq-bg-primary">Total di RAB = <?= " Rp. " .  number_format($totanggaran1, 2, ',', '.'); ?></a>
-
+                                  <span class="badge badge-success-transparent">
+                                    <span class="op-7 text-success font-weight-semibold">Total di RAB = <?= " Rp. " .  number_format($totanggaran1, 2, ',', '.'); ?> </span>
+                                  </span>
                                   <?php if ($pengajuan == 0) { ?>
                                     @can('anggaran_create')
                                     <!-- <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Tambah Anggaran" data-original-title="Tambah Anggaran" data-target="#tambah_anggaran<?= $rab[$r]->id ?>" href=""><i class="ri-user-add-line"></i></a> -->
@@ -438,9 +439,9 @@ use Illuminate\Support\Facades\Auth;
                           <?php }
                           } ?>
                           <!-- MODAL DETAIL TOR -->
-                          @include('perencanaan/modal2/detail_tor')
+                          <!-- include('perencanaan/modal2/detail_tor') -->
                           <!-- MODAL UPDATE TOR -->
-                          @include('perencanaan/modal2/update_tor')
+                          <!-- include('perencanaan/modal2/update_tor') -->
                           <!-- akhir perulangan tor -->
                         <?php
                         } ?>
@@ -492,17 +493,17 @@ use Illuminate\Support\Facades\Auth;
 
 
                         <tr>
-                          <td class="bg-primary" colspan="3" style="font-size: medium;">
-                            <i class="fa fa-calculator"></i><b> <?= "Rp. " .  number_format($semuaanggaran[0], 2, ',', '.') ?></b>
+                          <td colspan="3" style="font-size: medium;">
+                            <b> <?= "Rp. " .  number_format($semuaanggaran[0], 2, ',', '.') ?></b>
                           </td>
-                          <td class="bg-primary" colspan="3" style="font-size: medium;">
-                            <i class="fa fa-calculator"></i><b> <?= "Rp. " .  number_format($semuaanggaran[1], 2, ',', '.') ?></b>
+                          <td colspan="3" style="font-size: medium;">
+                            <b> <?= "Rp. " .  number_format($semuaanggaran[1], 2, ',', '.') ?></b>
                           </td>
-                          <td class="bg-primary" colspan="3" style="font-size: medium;">
-                            <i class="fa fa-calculator"></i><b> <?= "Rp. " .  number_format($semuaanggaran[2], 2, ',', '.') ?></b>
+                          <td colspan="3" style="font-size: medium;">
+                            <b> <?= "Rp. " .  number_format($semuaanggaran[2], 2, ',', '.') ?></b>
                           </td>
-                          <td class="bg-primary" colspan="3" style="font-size: medium;">
-                            <i class="fa fa-calculator"></i><b> <?= "Rp. " .  number_format($semuaanggaran[3], 2, ',', '.') ?></b>
+                          <td colspan="3" style="font-size: medium;">
+                            <b> <?= "Rp. " .  number_format($semuaanggaran[3], 2, ',', '.') ?></b>
                           </td>
                         </tr>
                       </tbody>

@@ -5,22 +5,39 @@ use Illuminate\Support\Facades\Auth;
 ?>
 @include('dashboards/users/layouts/script')
 
-<body>
+<body class="ltr main-body app sidebar-mini">
+
     <div id="loading">
         <div id="loading-center">
         </div>
     </div>
-    <div class="wrapper">
-        @include('dashboards/users/layouts/navbar')
-        @include('dashboards/users/layouts/sidebar')
-
+    <div class="page">
+        <div>
+            @include('dashboards/users/layouts/navbar')
+            @include('dashboards/users/layouts/sidebar')
+        </div>
         <?php
         $disetujui = 0; //apakah 3 sudah validasi? 
         ?>
         <!-- Page Content  -->
-        <div id="content-page" class="content-page">
-            <div class="container-fluid">
-                <div class="row">
+        <div id="content-page" class="main-content app-content">
+            <div class="main-container container-fluid">
+
+                <!-- breadcrumb -->
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="left-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1"> </span>
+                    </div>
+                    <div class="justify-content-center mt-2">
+                        <ol class="breadcrumb">
+                            <!-- <li class="breadcrumb-item tx-15"><a href="javascript:void(0);"></a></li>
+                            <li class="breadcrumb-item active" aria-current="page"></li> -->
+                        </ol>
+                    </div>
+                </div>
+                <!-- /breadcrumb -->
+
+                <div class="row row-sm">
                     <div class="col-sm-12">
                         <div class="iq-card">
                             <div class="iq-card-body p-0">
@@ -32,19 +49,21 @@ use Illuminate\Support\Facades\Auth;
                     </div>
                     <?php $active = 2; ?>
                     <div class="col-sm-12">
-                        <div class="iq-card">
-                            <div class="row">
-                                <div class="container mt-2 mb-2 mr-2">
-                                    <div class="user-list-files d-flex float-right">
-                                        <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
-                                            Print
-                                        </a>
-                                        <!-- <a class="iq-bg-primary" href="javascript:void();">
-                                            Excel
-                                        </a>
-                                        <a class="iq-bg-primary" href="javascript:void();">
-                                            Pdf
-                                        </a> -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="d-flex align-items-center">
+                                            <div class="float-end ms-auto">
+                                                <a href="javascript:void(0);" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" onclick="printDiv()"><i class="fe fe-download me-2"></i> Print</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -202,23 +221,21 @@ use Illuminate\Support\Facades\Auth;
                                             <?php
                                             function buttonKomentar($Href)
                                             {
-                                                echo '<a id="komen" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                        Lihat Komentar
+                                                echo '<a id="komen" data-bs-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample" class="me-2 mt-1">
+                                                <span class="badge bg-warning "><span class="me-1 fe fe-eye tx-11"></span>Show</span></span>
                                                     </a>';
                                             }
 
                                             function buttonPlus($Href)
                                             {
-                                                echo ' <a id="validasiplus" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="las la-plus"></i>
-                                            </a>';
+                                                echo '<a id="validasiplus" data-bs-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample" class="me-2 mt-1"><span class="badge bg-success "><span class="me-1 fe fe-edit-2 tx-11"></span>Comment</span></a>';
                                             }
 
                                             function areaKomentar($idArea, $nameArea, $place)
                                             {
-                                                echo ' <div class="container collapse col-6" id="' . $idArea . '">
+                                                echo ' <div class="container collapse col-sm-12" id="' . $idArea . '">
                                                 <div id="validasi" class="form-group">
-                                                    <textarea class="form-control" style="background:#c7c3c317" rows="1" id="' . $nameArea . '" name="' . $nameArea . '" placeholder="Komentar ' . $place . '..."></textarea>
+                                                    <textarea class="form-control"  rows="1" id="' . $nameArea . '" name="' . $nameArea . '" placeholder="Komentar ' . $place . '..."></textarea>
                                                 </div>
                                             </div>';
                                             }
@@ -741,19 +758,15 @@ use Illuminate\Support\Facades\Auth;
                                                                 if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi") {
                                                                     $muncul = 'ada';
                                                                     $buttonSubmit = 1; ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <label class="rdiobox"><input name="id_status" id="id_status" value="{{$status[$s]->id}}" type="radio"> <span>{{$status[$s]->nama_status}}</span></label>
+                                                        <!-- <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br /> -->
+
                                                     <?php } elseif ($currentStatus != "Proses Pengajuan" || $currentStatus != "Pengajuan Perbaikan") {
                                                                     $muncul = 'tidak ada';
                                                                 }
                                                                 // echo $muncul . $status[$s]->id . "<br />";
                                                                 if ($muncul == 'tidak ada') { ?>
-                                                        <!-- <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
-                                                            }
-                                                        </script> -->
                                                     <?php }
 
                                                                 // W D 1
@@ -765,19 +778,15 @@ use Illuminate\Support\Facades\Auth;
                                                                     if ($status[$s]->nama_status == "Revisi") {
                                                     ?>
                                                         <?php } ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <label class="rdiobox"><input name="id_status" id="id_status" value="{{$status[$s]->id}}" type="radio"> <span>{{$status[$s]->nama_status}}</span></label>
+                                                        <!-- <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br /> -->
+
+
                                                     <?php } elseif ($currentStatus != "Verifikasi") {
                                                                     $muncul1 = 'tidak ada';
                                                                 }
-                                                                // echo $muncul1;
                                                                 if ($muncul1 == 'tidak ada') { ?>
-                                                        <!-- <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
-                                                            }
-                                                        </script> -->
                                                     <?php }
 
                                                                 // W D 2
@@ -788,19 +797,15 @@ use Illuminate\Support\Facades\Auth;
                                                                     $muncul2 = 'ada';
                                                                     // echo "xx - " . $currentStatus . "-" . $currentStatusRole; 
                                                     ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+
+                                                        <label class="rdiobox"><input name="id_status" id="id_status" value="{{$status[$s]->id}}" type="radio"> <span>{{$status[$s]->nama_status}}</span></label>
+                                                        <!-- <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br /> -->
+
                                                     <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 1") {
                                                                     $muncul2 = 'tidak ada';
                                                                 }
-                                                                // echo $muncul2;
                                                                 if ($muncul2 == 'tidak ada') { ?>
-                                                        <!-- <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
-                                                            }
-                                                        </script> -->
                                                     <?php }
 
                                                                 // W D 3
@@ -808,26 +813,20 @@ use Illuminate\Support\Facades\Auth;
                                                                 if ($currentStatus == "Validasi" && $currentStatusRole == "WD 2"   && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
                                                                     $muncul3 = 'ada'; ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <label class="rdiobox"><input name="id_status" id="id_status" value="{{$status[$s]->id}}" type="radio"> <span>{{$status[$s]->nama_status}}</span></label>
+                                                        <!-- <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br /> -->
+
                                                     <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 2") {
                                                                     $muncul3 = 'tidak ada';
                                                                 }
-                                                                // echo $muncul3;
                                                                 if ($muncul3 == 'tidak ada') {
                                                     ?>
-                                                        <!-- <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
-                                                            }
-                                                        </script> -->
                                                     <?php }
-
-                                                                //
                                                             } else { ?>
-                                                    <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                    <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <label class="rdiobox"><input name="id_status" id="id_status" value="{{$status[$s]->id}}" type="radio"> <span>{{$status[$s]->nama_status}}</span></label>
+                                                    <!-- <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                    <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br /> -->
                                 <?php }
                                                         }
                                                     }

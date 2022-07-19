@@ -26,7 +26,7 @@ foreach ($role as $roles) {
 <?php if ($pengajuan == 0 && ($tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin")) { ?>
     <?php if ($pengajuan == 0) { ?>
         @can('rab_update')
-        <button class="badge badge-info rounded" data-toggle="modal" title="Update RAB" data-original-title="Update RAB" data-target="#update_rab<?= $rab[$r]->id ?>">
+        <button class="badge badge-info rounded" data-bs-toggle="modal" title="Update RAB" data-original-title="Update RAB" data-bs-target="#update_rab<?= $rab[$r]->id ?>">
             <i class="fa fa-edit"></i>
         </button>
         @endcan

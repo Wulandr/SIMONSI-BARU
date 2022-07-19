@@ -46,6 +46,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- <link href="{{ asset('nowa/assets/switcher/css/switcher.css') }}" rel="stylesheet">
+    <link href="{{ asset('nowa/assets/switcher/demo.css') }}" rel="stylesheet"> -->
+
     <style>
         .form-control {
             border: 1px solid #aaaaaa7d
@@ -54,6 +57,10 @@
         .scroll-card {
             max-height: 300px;
             overflow-y: auto;
+        }
+
+        label {
+            font-weight: bold;
         }
     </style>
 </head>

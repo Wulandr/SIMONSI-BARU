@@ -21,6 +21,19 @@ use Illuminate\Support\Facades\Auth;
         <div id="content-page" class="main-content app-content">
             <div class="main-container container-fluid">
 
+                <!-- breadcrumb -->
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="left-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1"> </span>
+                    </div>
+                    <div class="justify-content-center mt-2">
+                        <!-- <ol class="breadcrumb">
+                            <li class="breadcrumb-item tx-15"><a href="javascript:void(0);"> </a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> </li>
+                        </ol> -->
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-12 col-sm-12">
                         <div class="card">
@@ -31,11 +44,6 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <?php $data = 1 ?>
                             <div class="card-body">
-                                <div class="main-content-label mg-b-5">
-                                    Basic Wizard With Validation
-                                </div>
-                                <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.
-                                </p>
                                 <form class="text-center mt-4" method="post" action="{{ url('/tor/create') }}">
                                     @csrf
                                     <div id="wizard2">
@@ -307,41 +315,43 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <!-- Wrapper END -->
-        <script>
-            $(document).ready(function() {
-                $('#id_unit').select2();
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('#nama_pic').select2();
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('#id_subK').select2();
-            });
-        </script>
+    </div>
+    <!-- Wrapper END -->
+    <script>
+        $(document).ready(function() {
+            $('#id_unit').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#nama_pic').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#id_subK').select2();
+        });
+    </script>
 
-        @include('dashboards/users/layouts/footer')
-        <script>
-            $('[href="#finish"]').click(function() {
-                $('form').submit();
-            })
-        </script>
-        <script type="text/javascript">
-            var i = 0;
-            $("#dynamic-ar").click(function() {
-                ++i;
-                $("#dynamicAddRemove").append('<div class="col-md-8"><div class="form-group"><label>Komponen Input</label><input name="komponen[]" id="" type="text" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><label>Bulan</label><input name="bulan[]" id="" type="text" class="form-control"></div></div><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button>');
-            });
-            $(document).on('click', '.remove-input-field', function() {
-                $(this).parents('<div class="col-md-8">').remove();
-            });
-        </script>
+    @include('dashboards/users/layouts/footer')
+    <script>
+        $('[href="#finish"]').click(function() {
+            $('form').submit();
+        })
+    </script>
+    <script type="text/javascript">
+        var i = 0;
+        $("#dynamic-ar").click(function() {
+            ++i;
+            $("#dynamicAddRemove").append('<div class="col-md-8"><div class="form-group"><label>Komponen Input</label><input name="komponen[]" id="" type="text" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><label>Bulan</label><input name="bulan[]" id="" type="text" class="form-control"></div></div><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button>');
+        });
+        $(document).on('click', '.remove-input-field', function() {
+            $(this).parents('<div class="col-md-8">').remove();
+        });
+    </script>
 </body>
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
